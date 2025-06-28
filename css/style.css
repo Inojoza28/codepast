@@ -1,0 +1,58 @@
+.code-editor {
+  font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace;
+}
+.toast {
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+}
+.toast.show {
+  transform: translateX(0);
+}
+.folder-card {
+  transition: all 0.2s ease;
+}
+.folder-card:hover {
+  transform: translateY(-2px);
+}
+.snippet-card {
+  transition: all 0.2s ease;
+}
+.snippet-card:hover {
+  transform: translateY(-1px);
+}
+.modal-backdrop {
+  backdrop-filter: blur(4px);
+}
+.code-preview {
+  max-height: 200px;
+  overflow: hidden;
+  position: relative;
+}
+.code-preview::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  pointer-events: none;
+}
+.code-full {
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+/* Custom scrollbar */
+.code-full::-webkit-scrollbar {
+  width: 8px;
+}
+.code-full::-webkit-scrollbar-track {
+  background: #f3f4f6;
+}
+.code-full::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 4px;
+}
+.code-full::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}

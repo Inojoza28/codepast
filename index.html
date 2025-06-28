@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Organize e acesse facilmente seus trechos de código favoritos. CodePast é a ferramenta perfeita para desenvolvedores que querem manter seus snippets organizados.">
+    <meta name="keywords" content="snippets, organizar código, trechos de código, programação, desenvolvedor, javascript, python, html, css, java, c++, php, sql, bash, json, xml, markdown">
+    <meta name="author" content="Gabriel Inojoza">
+    <title>CodePast - Organize seus trechos de código</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+</head>
+<body class="bg-gray-50">
+    
+<!-- Header -->
+<header class="bg-white/90 backdrop-blur-sm shadow-md border-b border-gray-200 sticky top-0 z-40">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col sm:flex-row items-center justify-between py-3 gap-4 sm:gap-0">
+      
+      <!-- Logo + título + subtítulo -->
+      <div class="flex flex-col sm:flex-row items-center sm:items-center gap-1 sm:gap-4 text-center sm:text-left">
+        <div class="flex items-center gap-2">
+          <div class="w-9 h-9 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+            <span class="text-white font-bold text-sm">CN</span>
+          </div>
+          <h1 class="text-lg sm:text-xl font-bold text-gray-900">CodePast</h1>
+        </div>
+        <span class="text-xs sm:text-sm text-gray-500 hidden sm:inline-block">Organize seus trechos de código</span>
+      </div>
+
+      <!-- Input de busca -->
+      <div class="w-full sm:w-auto relative">
+        <input 
+          type="text" 
+          id="searchInput"
+          placeholder="Buscar snippets..."
+          class="w-full sm:w-72 px-3 py-2 text-sm border border-gray-300 rounded-lg bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
+        <svg class="absolute right-3 top-2.5 h-4 w-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8">
+        <!-- Welcome Section -->
+        <div id="welcomeSection" class="py-8 sm:py-12">
+            <!-- Hero Section -->
+            <div class="text-center mb-12 sm:mb-16">
+                <div class="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                    <svg class="w-6 h-6 sm:w-8 sm:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                    </svg>
+                </div>
+                <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Bem-vindo ao CodePast</h2>
+                <p class="text-gray-600 mb-6 sm:mb-8 max-w-2xl mx-auto text-sm sm:text-base lg:text-lg px-4">
+                    Organize seus snippets de código em pastas personalizadas. Nunca mais perca aquele código útil que você sempre usa!
+                </p>
+                <button 
+                    id="createFirstFolder" 
+                    class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-medium hover:from-blue-600 hover:to-purple-700 transition-all transform hover:scale-105 text-sm sm:text-base shadow-lg"
+                >
+                    Começar Agora
+                </button>
+            </div>
+
+            <!-- Features Section -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-12 sm:mb-16">
+                <div class="text-center p-6 bg-white rounded-xl border border-gray-200 hover:border-gray-300 transition-colors">
+                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-5l-2-2H5a2 2 0 00-2 2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Organize por Pastas</h3>
+                    <p class="text-gray-600 text-sm">Crie pastas personalizadas para organizar seus snippets por projeto, linguagem ou categoria.</p>
+                </div>
+
+                <div class="text-center p-6 bg-white rounded-xl border border-gray-200 hover:border-gray-300 transition-colors">
+                    <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Copie Rapidamente</h3>
+                    <p class="text-gray-600 text-sm">Copie seus códigos com um clique. Acesso rápido aos seus snippets mais utilizados.</p>
+                </div>
+
+                <div class="text-center p-6 bg-white rounded-xl border border-gray-200 hover:border-gray-300 transition-colors">
+                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Busca Inteligente</h3>
+                    <p class="text-gray-600 text-sm">Encontre rapidamente qualquer snippet através da busca por título, código ou linguagem.</p>
+                </div>
+            </div>
+            
+        <!-- How it Works Section -->
+        <div class="bg-gradient-to-br from-white via-gray-50 to-gray-100 border border-gray-200 rounded-xl p-6 sm:p-8 mb-12 sm:mb-16 shadow-sm">
+               <h3 class="text-2xl sm:text-3xl font-semibold text-gray-900 text-center mb-8 sm:mb-10">Como Funciona</h3>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 relative">
+             <!-- Passo 1 -->
+             <div class="text-center px-4 sm:px-6 pb-6 sm:pb-0 border-b sm:border-b-0 sm:border-r border-gray-200">
+                 <div class="w-12 h-12 bg-blue-600 text-white rounded-xl flex items-center justify-center mx-auto mb-4 font-medium transition-transform hover:scale-105">1</div>
+                 <h4 class="font-semibold text-gray-900 mb-2">Crie uma Pasta</h4>
+                 <p class="text-gray-600 text-sm leading-relaxed">Organize seus códigos criando pastas por projeto ou categoria.</p>
+             </div>
+
+             <!-- Passo 2 -->
+             <div class="text-center px-4 sm:px-6 py-6 sm:py-0 border-b sm:border-b-0 sm:border-r border-gray-200">
+                 <div class="w-12 h-12 bg-green-600 text-white rounded-xl flex items-center justify-center mx-auto mb-4 font-medium transition-transform hover:scale-105">2</div>
+                 <h4 class="font-semibold text-gray-900 mb-2">Adicione Snippets</h4>
+                 <p class="text-gray-600 text-sm leading-relaxed">Cole seus códigos úteis com título e linguagem para fácil identificação.</p>
+             </div>
+
+            <!-- Passo 3 -->
+            <div class="text-center px-4 sm:px-6 pt-6 sm:pt-0">
+                <div class="w-12 h-12 bg-purple-600 text-white rounded-xl flex items-center justify-center mx-auto mb-4 font-medium transition-transform hover:scale-105">3</div>
+                <h4 class="font-semibold text-gray-900 mb-2">Use Quando Precisar</h4>
+                <p class="text-gray-600 text-sm leading-relaxed">Acesse e copie seus códigos rapidamente sempre que necessário.</p>
+             </div>
+           </div>
+        </div>
+
+            <!-- Supported Languages -->
+            <div class="text-center">
+                <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-6">Linguagens Suportadas</h3>
+                <div class="flex flex-wrap justify-center gap-3 mb-8">
+                    <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm font-medium">JavaScript</span>
+                    <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Python</span>
+                    <span class="px-3 py-1 bg-orange-100 text-orange-800 rounded-full text-sm font-medium">HTML</span>
+                    <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">CSS</span>
+                    <span class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-sm font-medium">Java</span>
+                    <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">C++</span>
+                    <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm font-medium">PHP</span>
+                    <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">SQL</span>
+                    <span class="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm font-medium">Bash</span>
+                    <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm font-medium">JSON</span>
+                    <span class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-sm font-medium">XML</span>
+                    <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Markdown</span>
+                </div>
+                <button 
+                    id="createFirstFolderBottom" 
+                    class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-3 rounded-lg font-medium hover:from-blue-600 hover:to-purple-700 transition-all transform hover:scale-105 shadow-lg"
+                >
+                    Criar Primeira Pasta
+                </button>
+            </div>
+        </div>
+
+        <!-- Folders Grid -->
+        <div id="foldersSection" class="hidden">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 sm:mb-6 gap-4">
+                <h2 class="text-xl sm:text-2xl font-bold text-gray-900">Suas Pastas</h2>
+                <button 
+                    id="createFolderBtn" 
+                    class="bg-blue-500 text-white px-3 sm:px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors flex items-center space-x-2 text-sm sm:text-base w-full sm:w-auto justify-center"
+                >
+                    <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                    </svg>
+                    <span>Nova Pasta</span>
+                </button>
+            </div>
+            <div id="foldersGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6"></div>
+        </div>
+
+        <!-- Folder View -->
+        <div id="folderView" class="hidden">
+            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 sm:mb-6 gap-4">
+                <div class="flex items-center space-x-2 sm:space-x-4">
+                    <button id="backToFolders" class="text-blue-500 hover:text-blue-600 flex items-center space-x-1 sm:space-x-2 text-sm sm:text-base">
+                        <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                        </svg>
+                        <span>Voltar</span>
+                    </button>
+                    <h2 id="folderTitle" class="text-lg sm:text-2xl font-bold text-gray-900 truncate max-w-48 sm:max-w-none"></h2>
+                </div>
+                <div class="flex space-x-2 sm:space-x-3 w-full sm:w-auto">
+                    <button id="renameFolderBtn" class="text-gray-500 hover:text-gray-700 p-2 rounded-lg hover:bg-gray-100">
+                        <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                        </svg>
+                    </button>
+                    <button id="deleteFolderBtn" class="text-red-500 hover:text-red-600 p-2 rounded-lg hover:bg-red-50">
+                        <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                        </svg>
+                    </button>
+                    <button 
+                        id="addSnippetBtn" 
+                        class="bg-green-500 text-white px-3 sm:px-4 py-2 rounded-lg hover:bg-green-600 transition-colors flex items-center space-x-1 sm:space-x-2 text-sm sm:text-base flex-1 sm:flex-none justify-center"
+                    >
+                        <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                        </svg>
+                        <span>Novo Snippet</span>
+                    </button>
+                </div>
+            </div>
+            <div id="snippetsGrid" class="space-y-4"></div>
+        </div>
+    </main>
+
+    <!-- Modals -->
+    <!-- Create Folder Modal -->
+    <div id="createFolderModal" class="fixed inset-0 bg-black bg-opacity-50 modal-backdrop flex items-center justify-center z-50 hidden p-4">
+        <div class="bg-white p-4 sm:p-6 rounded-lg w-full max-w-md border border-gray-200">
+            <h3 class="text-lg font-semibold text-gray-900 mb-4">Nova Pasta</h3>
+            <input 
+                type="text" 
+                id="folderNameInput" 
+                placeholder="Nome da pasta..."
+                class="w-full px-3 sm:px-4 py-2 border border-gray-300 rounded-lg bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
+            >
+            <div class="flex flex-col sm:flex-row justify-end space-y-2 sm:space-y-0 sm:space-x-3 mt-6">
+                <button id="cancelCreateFolder" class="px-4 py-2 text-gray-600 hover:text-gray-800 text-sm sm:text-base rounded-lg hover:bg-gray-100">
+                    Cancelar
+                </button>
+                <button id="confirmCreateFolder" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 text-sm sm:text-base">
+                    Criar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Create Snippet Modal -->
+    <div id="createSnippetModal" class="fixed inset-0 bg-black bg-opacity-50 modal-backdrop flex items-center justify-center z-50 hidden p-4">
+        <div class="bg-white p-4 sm:p-6 rounded-lg w-full max-w-4xl max-h-[95vh] overflow-y-auto border border-gray-200">
+            <h3 class="text-lg font-semibold text-gray-900 mb-4">Novo Snippet</h3>
+            <div class="space-y-4">
+                <input 
+                    type="text" 
+                    id="snippetTitleInput" 
+                    placeholder="Título do snippet..."
+                    class="w-full px-3 sm:px-4 py-2 border border-gray-300 rounded-lg bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
+                >
+                <select 
+                    id="snippetLanguage" 
+                    class="w-full px-3 sm:px-4 py-2 border border-gray-300 rounded-lg bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
+                >
+                    <option value="javascript">JavaScript</option>
+                    <option value="python">Python</option>
+                    <option value="html">HTML</option>
+                    <option value="css">CSS</option>
+                    <option value="java">Java</option>
+                    <option value="cpp">C++</option>
+                    <option value="php">PHP</option>
+                    <option value="sql">SQL</option>
+                    <option value="bash">Bash</option>
+                    <option value="json">JSON</option>
+                    <option value="xml">XML</option>
+                    <option value="markdown">Markdown</option>
+                </select>
+                <textarea 
+                    id="snippetCodeInput" 
+                    placeholder="Cole seu código aqui..."
+                    rows="15"
+                    class="w-full px-3 sm:px-4 py-2 border border-gray-300 rounded-lg bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 code-editor resize-none text-sm"
+                ></textarea>
+            </div>
+            <div class="flex flex-col sm:flex-row justify-end space-y-2 sm:space-y-0 sm:space-x-3 mt-6">
+                <button id="cancelCreateSnippet" class="px-4 py-2 text-gray-600 hover:text-gray-800 text-sm sm:text-base rounded-lg hover:bg-gray-100">
+                    Cancelar
+                </button>
+                <button id="confirmCreateSnippet" class="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 text-sm sm:text-base">
+                    Salvar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- View Full Snippet Modal -->
+    <div id="viewSnippetModal" class="fixed inset-0 bg-black bg-opacity-50 modal-backdrop flex items-center justify-center z-50 hidden p-4">
+        <div class="bg-white p-4 sm:p-6 rounded-lg w-full max-w-5xl max-h-[95vh] overflow-y-auto border border-gray-200">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-4">
+                <div class="flex-1 min-w-0">
+                    <h3 id="viewSnippetTitle" class="text-lg sm:text-xl font-semibold text-gray-900 truncate"></h3>
+                    <div class="flex items-center space-x-2 mt-2">
+                        <span id="viewSnippetLanguage" class="px-2 py-1 text-xs bg-blue-100 text-blue-800 rounded"></span>
+                        <span id="viewSnippetDate" class="text-xs text-gray-500"></span>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <button id="copyFullSnippet" class="text-gray-500 hover:text-gray-700 transition-colors p-2 rounded-lg hover:bg-gray-100">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                        </svg>
+                    </button>
+                    <button id="closeViewSnippet" class="text-gray-500 hover:text-gray-700 transition-colors p-2 rounded-lg hover:bg-gray-100">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="code-full">
+                <pre class="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto border border-gray-700"><code id="viewSnippetCode" class="text-sm"></code></pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed top-4 right-4 bg-green-500 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg shadow-lg toast z-50 hidden">
+        <span id="toastMessage">Código copiado!</span>
+    </div>
+
+<script src="js/script.js"></script>
+</body>
+</html>
